@@ -7,6 +7,12 @@ import java.util.ArrayList;
 
 public class GestisciMappa {
 
+    public static final String READER = "Errore nell'inizializzazione del reader:";
+    public static final String MAPPA = "mappa";
+    public static final String ROW = "row";
+    public static final String CELL = "cell";
+    public static final char GIOCATORE = 'O';
+    public static final char PRINCIPESSA = 'K';
     private char[][] mappa;
 
     public char[][] getMappa() {
@@ -30,12 +36,12 @@ public class GestisciMappa {
         for (int i=0; i< this.mappa.length  ; i++){
             for(int j = 0; j<this.mappa[i].length; j++){
                 switch (mappa[i][j]) {
-                    case 'O' -> {
+                    case GIOCATORE -> {
                         //giocatore
                         Giocatore giocatore = new Giocatore();
                         giocatore.setCoordinate(i, j);
                     }
-                    case 'K' ->
+                    case PRINCIPESSA ->
                         //Principessa
                             casella = new Casella(i, j);
                 }
@@ -54,7 +60,7 @@ public class GestisciMappa {
             xmlr = xmlif.createXMLStreamReader(fis);
 
         } catch (Exception e) {
-            System.out.println("Errore nell'inizializzazione del reader:");
+            System.out.println(READER);
             System.out.println(e.getMessage());
         }
         int width;
@@ -69,7 +75,7 @@ public class GestisciMappa {
                 //...ne controlla il nome e controlla a quale tag corrisponde:
                 switch (nomeTag){
                     //nel caso sia uguale a mappa (solo all'inizio) crea una mappa delle dimensioni date dagli attributi
-                    case "mappa":
+                    case MAPPA:
                         if(xmlr.getAttributeCount() != 0){
                             width = Integer.parseInt(xmlr.getAttributeValue(0));
                             height = Integer.parseInt(xmlr.getAttributeValue(1));
@@ -77,11 +83,11 @@ public class GestisciMappa {
                         }
                         break;
                     // nel caso sia uguale a row...
-                    case "row":
+                    case ROW:
                         i++;
                         j=0;
                         break;
-                    case "cell":
+                    case CELL:
                         while (xmlr.getEventType() != XMLStreamConstants.CHARACTERS){
                             xmlr.next();
                         }

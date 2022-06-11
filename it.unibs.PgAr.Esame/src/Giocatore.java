@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 public class Giocatore extends Personaggio implements Movimento {
 
+    public static final String RAGGIUNTO_LIMITE_MAPPA = "Raggiunto limite mappa";
+    public static final String AGGIUNTO_ALL_INVENTARIO = "Oggetto aggiunto all'inventario!";
+    public static final String NON_PUOI_PASSARE_DI_QUA = "muro, non puoi passare di qua!";
     private  ArrayList<Oggetto> inventario;
 
     public Giocatore() {
@@ -32,7 +35,7 @@ public class Giocatore extends Personaggio implements Movimento {
                     setCoordinate((x), y);
                     mappa[x][y] = 'O';
                     mappa[x + 1][y] = '.';
-                } else System.out.println("Raggiunto limite mappa");
+                } else System.out.println(RAGGIUNTO_LIMITE_MAPPA);
                 casellaInCuiMiTrovo(mappa);
             }
             case 'a' -> {
@@ -41,7 +44,7 @@ public class Giocatore extends Personaggio implements Movimento {
                     setCoordinate(x, y);
                     mappa[x][y] = 'O';
                     mappa[x][y + 1] = '.';
-                } else System.out.println("Raggiunto limite mappa");
+                } else System.out.println(RAGGIUNTO_LIMITE_MAPPA);
                 casellaInCuiMiTrovo(mappa);
             }
             case 's' -> {
@@ -50,7 +53,7 @@ public class Giocatore extends Personaggio implements Movimento {
                     setCoordinate(x, y);
                     mappa[x][y] = 'O';
                     mappa[x - 1][y] = '.';
-                } else System.out.println("Raggiunto limite mappa");
+                } else System.out.println(RAGGIUNTO_LIMITE_MAPPA);
                 casellaInCuiMiTrovo(mappa);
             }
             case 'd' -> {
@@ -59,7 +62,7 @@ public class Giocatore extends Personaggio implements Movimento {
                     setCoordinate(x, y);
                     mappa[x][y] = 'O';
                     mappa[x][y - 1] = '.';
-                } else System.out.println("Raggiunto limite mappa");
+                } else System.out.println(RAGGIUNTO_LIMITE_MAPPA);
                 casellaInCuiMiTrovo(mappa);
             }
         }
@@ -79,7 +82,7 @@ public class Giocatore extends Personaggio implements Movimento {
             Casella casellaChest = new Casella(x, y);
             Chest cassa = new Chest(casellaChest);
             inventario.add(apriChest(cassa));
-            System.out.println("Oggetto aggiunto all'inventario!");
+            System.out.println(AGGIUNTO_ALL_INVENTARIO);
         }else if (mappa[x][y]== 'K') {
             System.out.println("Gioco terminato!");
         }/*else if (mappa[x][y]== 'T') {
@@ -89,7 +92,7 @@ public class Giocatore extends Personaggio implements Movimento {
         }else if (mappa[x][y]== 'B') {
 
         }*/else if (mappa[x][y]== '#') {
-            System.out.println("muro, non puoi passare di qua!");
+            System.out.println(NON_PUOI_PASSARE_DI_QUA);
             return false;
         }
         return true;
