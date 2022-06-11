@@ -1,12 +1,5 @@
-import java.util.ArrayList;
-
-public class Mostro {
-    private String nome;
-    private  double vita;
-    private int atk_base;
-    private  int def_base;
+public class Mostro extends Personaggio {
     private  Arma arma;
-    private int potenza_base;
 
     public double attacca(Giocatore giocatore){
 

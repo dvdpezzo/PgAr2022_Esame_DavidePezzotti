@@ -1,19 +1,16 @@
 import java.util.ArrayList;
 
-public class Giocatore implements Movimento{
-    private String nome;
-    private  double vita;
-    private int atk_base;
-    private  int def_base;
+public class Giocatore extends Personaggio implements Movimento {
+
     private  ArrayList<Oggetto> inventario;
-    private int potenza_base;
+
 
     public double getVita() {
-        return vita;
+        return getVita();
     }
 
     public void setVita(double vita) {
-        this.vita = vita;
+        setVita(vita);
     }
 
     @Override

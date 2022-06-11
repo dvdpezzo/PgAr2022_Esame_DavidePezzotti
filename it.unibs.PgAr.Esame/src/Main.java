@@ -9,12 +9,13 @@ public class Main {
         MyMenu menuPrincipale = new MyMenu("Come Prosegui?", voci_menuPrincipale);
 
         //genera mappa
-        GestisciMappa gestisciMappa = new GestisciMappa();
-        gestisciMappa.creaMappa("livello4Princess.xml");
+        /*GestisciMappa gestisciMappa = new GestisciMappa();
+        gestisciMappa.creaMappa("Livelli/livello4Princess.xml");*/
 
         do {
             int scelta;
-            gestisciMappa.mostraMappa();
+            //mostra la mappa dopo ogni turno
+            //gestisciMappa.stampaMappa();
             do {
                 scelta = menuPrincipale.scegli();
                 switch (scelta){
@@ -22,6 +23,7 @@ public class Main {
                         //muovi il giocatore
                         /*se incontra un mostro inizia la fase di attacco
                         * se trova una chest chiede se vuole aprirla*/
+                        System.out.println("scelta 1");
                         break;
                     case 2:
                         //utilizza oggetto
