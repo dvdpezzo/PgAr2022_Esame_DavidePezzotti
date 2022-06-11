@@ -9,13 +9,13 @@ public class Main {
         MyMenu menuPrincipale = new MyMenu("Come Prosegui?", voci_menuPrincipale);
 
         //genera mappa
-        /*GestisciMappa gestisciMappa = new GestisciMappa();
-        gestisciMappa.creaMappa("Livelli/livello4Princess.xml");*/
+        GestisciMappa gestisciMappa = new GestisciMappa();
+        gestisciMappa.creaMappa("Livelli/livello4Princess.xml");
 
         do {
             int scelta;
             //mostra la mappa dopo ogni turno
-            //gestisciMappa.stampaMappa();
+            gestisciMappa.stampaMappa();
             do {
                 scelta = menuPrincipale.scegli();
                 switch (scelta){

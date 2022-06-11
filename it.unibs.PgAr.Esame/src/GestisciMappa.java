@@ -87,13 +87,13 @@ public class GestisciMappa {
         }
         int width;
         int height;
+        int i=-1;
+        int j=0;
         //rimane nel while fino a che ha eventi a disposizione
         while(xmlr.hasNext()){
             //se l'evento che trova è uno start element...
             if(xmlr.getEventType() == XMLStreamConstants.START_ELEMENT){
                 String nomeTag = xmlr.getLocalName();
-                int i=-1;
-                int j=0;
                 //...ne controlla il nome e controlla a quale tag corrisponde:
                 switch (nomeTag){
                     //nel caso sia uguale a mappa (solo all'inizio) crea una mappa delle dimensioni date dagli attributi
