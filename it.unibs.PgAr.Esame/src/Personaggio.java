@@ -15,10 +15,6 @@ public abstract class Personaggio {
         this.casella = new Casella(x, y);
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }

@@ -13,7 +13,7 @@ public class Main {
         //genera mappa
         GestisciMappa gestisciMappa = new GestisciMappa();
         gestisciMappa.creaMappa("Livelli/livello1.xml");
-
+        boolean abbandonaPartita = false;
         do {
             int scelta;
             //mostra la mappa dopo ogni turno
@@ -21,43 +21,41 @@ public class Main {
             gestisciMappa.setacciaPiano();
             do {
                 scelta = menuPrincipale.scegli();
-                switch (scelta){
-                    case 1:
+                switch (scelta) {
+                    case 1 -> {
                         //muovi il giocatore
                         char direzione = InputDati.leggiChar("Inserire direzione in cui muoversi (W , A, S, D)");
                         giocatore.muoviPersonaggio(direzione, gestisciMappa.getMappa());
                         gestisciMappa.stampaMappa();
-                        /*se incontra un mostro inizia la fase di attacco
-                        * se trova una chest la apre in automatico*/
-                        break;
-                    case 2:
+                    }
+                    /*se incontra un mostro inizia la fase di attacco
+                     * se trova una chest la apre in automatico*/
+                    case 2 -> {
                         //utilizza oggetto
                         giocatore.apriInventario();
                         int i = InputDati.leggiIntero("Quale oggetto ti interessa utilizzare?\n(Premere 0 per annullare) ");
                         if (i > 0) {
                             Oggetto oggetto_selezionato = giocatore.selezionaOggetto(i);
-                            switch(oggetto_selezionato.getNome()){
-                                case "Spada":
+                            switch (oggetto_selezionato.getNome()) {
+                                case "Spada" -> {
                                     Arma arma = (Arma) oggetto_selezionato;
                                     arma.equipaggiaArma(giocatore);
-                                    break;
-                                case "Pozione curatrice":
+                                }
+                                case "Pozione curatrice" -> {
                                     Pozione pozione = (Pozione) oggetto_selezionato;
                                     pozione.ripristinaVita(giocatore);
-                                    break;
-                                case "Scudo":
+                                }
+                                case "Scudo" -> {
                                     Scudo scudo = (Scudo) oggetto_selezionato;
                                     scudo.proteggi(giocatore);
-                                    break;
+                                }
                             }
                             gestisciMappa.stampaMappa();
-                        }
-                        else if (i == 0){
+                        } else if (i == 0) {
                             gestisciMappa.stampaMappa();
-                            break;
                         }
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         String[] voci_menuSecondario = {"Seleziona Inventario", "Mostra le statistiche", "Abbandona Partita"};
                         MyMenu menuSecondario = new MyMenu("Menu di Pausa", voci_menuSecondario);
                         //apri Menu di pausa
@@ -65,19 +63,23 @@ public class Main {
                         int secondaScelta;
                         do {
                             secondaScelta = menuSecondario.scegli();
-                            switch (secondaScelta){
-                                case 1:
-                                    break;
-                                case 2:
-                                    break;
-                                    case
+                            switch (secondaScelta) {
+                                case 1 -> giocatore.apriInventario();
+                                case 2 -> System.out.println(giocatore);
+                                case 3 -> abbandonaPartita = true;
                             }
-                        }while(secondaScelta != 0);
-                        break;
+                        } while (secondaScelta != 0);
+                    }
                 }
             }while(scelta != 0);
 
-
-        }while(giocatore.getVita() != 0);
+        }while(giocatore.getVita() != 0 && !abbandonaPartita && vittoria(giocatore, gestisciMappa.setacciaPiano()));
     }
+
+    private static boolean vittoria(Giocatore giocatore, Casella casellaPrincipessa) {
+        if(giocatore.getCoordinate().equals(casellaPrincipessa))return true;
+        else return  false;
+    }
+
+
 }

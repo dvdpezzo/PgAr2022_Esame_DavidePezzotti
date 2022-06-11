@@ -7,7 +7,7 @@ public class Scudo extends Oggetto{
         this.protezione = protezione;
     }
     public void proteggi(Giocatore giocatore){
-        double vita = giocatore.getVita();
-        giocatore.setVita(vita + protezione);
+        int difesa = giocatore.getDef_base();
+        giocatore.setDef_base(difesa + protezione);
     }
 }

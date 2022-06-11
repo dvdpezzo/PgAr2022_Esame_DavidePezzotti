@@ -13,10 +13,6 @@ public class GestisciMappa {
         return mappa;
     }
 
-    public void setMappa(char[][] mappa) {
-        this.mappa = mappa;
-    }
-
     public void stampaMappa() {
         for (char[] chars : this.mappa) {
             for (char aChar : chars) {
@@ -25,36 +21,27 @@ public class GestisciMappa {
             System.out.println("");
         }
     }
-    private void setDimensioniMappa(int width, int height) {
-        this.mappa = new char[width][height];
+    private void setDimensioniMappa(int height, int width) {
+        this.mappa = new char[height][width];
     }
 
-    public void setacciaPiano(){
-        ArrayList<Casella> caselle_non_occupabili = new ArrayList<>();
+    public Casella setacciaPiano(){
+        Casella casella = new Casella(-1,-1);
         for (int i=0; i< this.mappa.length  ; i++){
             for(int j = 0; j<this.mappa[i].length; j++){
-                Casella casella;
-                switch (mappa[i][j]){
-                    case 'O':
+                switch (mappa[i][j]) {
+                    case 'O' -> {
                         //giocatore
                         Giocatore giocatore = new Giocatore();
-                        giocatore.setCoordinate(i , j);
-                        break;
-                    case '#':
-                        //Muro:
-                        casella = new Casella(i, j);
-                        casella.setOccupabile(false);
-                        caselle_non_occupabili.add(casella);
-                        break;
-                    case 'K':
+                        giocatore.setCoordinate(i, j);
+                    }
+                    case 'K' ->
                         //Principessa
-                        casella = new Casella(i ,j);
-                        break;
-
+                            casella = new Casella(i, j);
                 }
             }
         }
-
+        return casella;
     }
 
     public void creaMappa(String filename) throws XMLStreamException {

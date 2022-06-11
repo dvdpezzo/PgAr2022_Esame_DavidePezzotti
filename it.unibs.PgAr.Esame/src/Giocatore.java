@@ -13,11 +13,11 @@ public class Giocatore extends Personaggio implements Movimento {
     }
 
     public double getVita() {
-        return getVita();
+        return super.getVita();
     }
 
     public void setVita(double vita) {
-        setVita(vita);
+        super.setVita(vita);
     }
 
     @Override
@@ -25,47 +25,43 @@ public class Giocatore extends Personaggio implements Movimento {
         Casella casellaAttuale = getCoordinate();
         int x = casellaAttuale.getX();
         int y = casellaAttuale.getY();
-        switch (direzione){
-            case 'w' :
-                x = x-1;
-                if(x > 0 && !(casellaInCuiMiTrovo(mappa))) {
+        switch (direzione) {
+            case 'w' -> {
+                x = x - 1;
+                if (x > 0 && !(casellaInCuiMiTrovo(mappa))) {
                     setCoordinate((x), y);
                     mappa[x][y] = 'O';
-                    mappa[x+1][y] = '.';
-                }
-                else System.out.println("Raggiunto limite mappa");
+                    mappa[x + 1][y] = '.';
+                } else System.out.println("Raggiunto limite mappa");
                 casellaInCuiMiTrovo(mappa);
-                break;
-            case 'a':
-                y = y-1;
-                if (y>0) {
+            }
+            case 'a' -> {
+                y = y - 1;
+                if (y > 0) {
                     setCoordinate(x, y);
                     mappa[x][y] = 'O';
-                    mappa[x][y+1] = '.';
-                }
-                else System.out.println("Raggiunto limite mappa");
+                    mappa[x][y + 1] = '.';
+                } else System.out.println("Raggiunto limite mappa");
                 casellaInCuiMiTrovo(mappa);
-                break;
-            case 's':
-                x = x+1;
-                if(x< mappa.length) {
+            }
+            case 's' -> {
+                x = x + 1;
+                if (x < mappa.length) {
                     setCoordinate(x, y);
                     mappa[x][y] = 'O';
-                    mappa[x-1][y] = '.';
-                }
-                else System.out.println("Raggiunto limite mappa");
+                    mappa[x - 1][y] = '.';
+                } else System.out.println("Raggiunto limite mappa");
                 casellaInCuiMiTrovo(mappa);
-                break;
-            case 'd':
-                y = y+1;
-                if(y < mappa[x].length) {
+            }
+            case 'd' -> {
+                y = y + 1;
+                if (y < mappa[x].length) {
                     setCoordinate(x, y);
                     mappa[x][y] = 'O';
-                    mappa[x][y-1] = '.';
-                }
-                else System.out.println("Raggiunto limite mappa");
+                    mappa[x][y - 1] = '.';
+                } else System.out.println("Raggiunto limite mappa");
                 casellaInCuiMiTrovo(mappa);
-                break;
+            }
         }
     }
 
@@ -100,8 +96,7 @@ public class Giocatore extends Personaggio implements Movimento {
     }
 
     public double attacca(Mostro mostro){
-        double attacco =  getAtk_base();
-        return attacco;
+        return getAtk_base();
     }
 
     private Oggetto apriChest(Chest cassa){
@@ -119,7 +114,8 @@ public class Giocatore extends Personaggio implements Movimento {
         return inventario.get(i);
     }
 
-    private  int impugnaArma(Arma arma){
-        return 0;
+    @Override
+    public String toString() {
+        return "Giocatore:" + "\n- vita attuale: " + getVita() + "\n- attacco base attuale: " + getAtk_base() +"\n- potenza aggiuntiva attuale: " + getPotenza_base() + "\n- difesa attuale: " + getDef_base() + "\n- posizione attuale: " + getCoordinate();
     }
 }
