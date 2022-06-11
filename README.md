@@ -13,7 +13,7 @@
 <! - - Spuntare con una ’X ’ i moduli implementati -->
 
 - Modulo 1
-- [ ] Modulo 1. A : Lettura XML e creazione mappa
+- [X] Modulo 1. A : Lettura XML e creazione mappa
 - [ ] Modulo 1. B : Creazione casuale della mappa
 - [ ] Modulo 2: Scale e miniboss
 - [ ] Modulo 3: Pathfinding dei mostri

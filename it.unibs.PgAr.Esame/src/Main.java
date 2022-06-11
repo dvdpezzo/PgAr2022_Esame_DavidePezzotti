@@ -1,15 +1,20 @@
 import it.unibs.fp.mylib.MyMenu;
 
+import javax.xml.stream.XMLStreamException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws XMLStreamException {
         Giocatore giocatore = new Giocatore();
         String[] voci_menuPrincipale = {"Muoviti", "Utilizza Oggetto", "Apri Menu di pausa"};
         MyMenu menuPrincipale = new MyMenu("Come Prosegui?", voci_menuPrincipale);
 
         //genera mappa
+        GestisciMappa gestisciMappa = new GestisciMappa();
+        gestisciMappa.creaMappa("livello4Princess.xml");
 
         do {
             int scelta;
+            gestisciMappa.mostraMappa();
             do {
                 scelta = menuPrincipale.scegli();
                 switch (scelta){
