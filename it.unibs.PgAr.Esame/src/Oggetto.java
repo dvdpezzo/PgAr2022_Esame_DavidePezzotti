@@ -22,4 +22,9 @@ public abstract class Oggetto {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
+
+    @Override
+    public String toString() {
+        return nome + ": " + "\n------\n" + descrizione;
+    }
 }

@@ -28,25 +28,56 @@ public class Main {
                         giocatore.muoviPersonaggio(direzione, gestisciMappa.getMappa());
                         gestisciMappa.stampaMappa();
                         /*se incontra un mostro inizia la fase di attacco
-                        * se trova una chest chiede se vuole aprirla*/
-                        System.out.println("scelta 1");
+                        * se trova una chest la apre in automatico*/
                         break;
                     case 2:
                         //utilizza oggetto
-                        /* Menu della tipologia di oggetti:
-                        * - pozioni
-                        * - armi
-                        * - scudi
-                        * il giocatore seleziona che tipo di oggetto vuole equipaggiare, se non ha nemmeno uno di quella categoria, lo rimando alla selezione*/
+                        giocatore.apriInventario();
+                        int i = InputDati.leggiIntero("Quale oggetto ti interessa utilizzare?\n(Premere 0 per annullare) ");
+                        if (i > 0) {
+                            Oggetto oggetto_selezionato = giocatore.selezionaOggetto(i);
+                            switch(oggetto_selezionato.getNome()){
+                                case "Spada":
+                                    Arma arma = (Arma) oggetto_selezionato;
+                                    arma.equipaggiaArma(giocatore);
+                                    break;
+                                case "Pozione curatrice":
+                                    Pozione pozione = (Pozione) oggetto_selezionato;
+                                    pozione.ripristinaVita(giocatore);
+                                    break;
+                                case "Scudo":
+                                    Scudo scudo = (Scudo) oggetto_selezionato;
+                                    scudo.proteggi(giocatore);
+                                    break;
+                            }
+                            gestisciMappa.stampaMappa();
+                        }
+                        else if (i == 0){
+                            gestisciMappa.stampaMappa();
+                            break;
+                        }
                         break;
                     case 3:
+                        String[] voci_menuSecondario = {"Seleziona Inventario", "Mostra le statistiche", "Abbandona Partita"};
+                        MyMenu menuSecondario = new MyMenu("Menu di Pausa", voci_menuSecondario);
                         //apri Menu di pausa
                         /*altro menu con selezione dell'inventario (e controlla effetto oggetti), mostra le statistiche, abbandona partita*/
+                        int secondaScelta;
+                        do {
+                            secondaScelta = menuSecondario.scegli();
+                            switch (secondaScelta){
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                    case
+                            }
+                        }while(secondaScelta != 0);
                         break;
                 }
             }while(scelta != 0);
 
 
-        }while(giocatore.getVita() != 0 /*|| raggiunta principessa*/);
+        }while(giocatore.getVita() != 0);
     }
 }

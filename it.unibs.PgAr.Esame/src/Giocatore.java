@@ -86,13 +86,13 @@ public class Giocatore extends Personaggio implements Movimento {
             System.out.println("Oggetto aggiunto all'inventario!");
         }else if (mappa[x][y]== 'K') {
             System.out.println("Gioco terminato!");
-        }else if (mappa[x][y]== 'T') {
+        }/*else if (mappa[x][y]== 'T') {
 
         }else if (mappa[x][y]== 't') {
 
         }else if (mappa[x][y]== 'B') {
 
-        }else if (mappa[x][y]== '#') {
+        }*/else if (mappa[x][y]== '#') {
             System.out.println("muro, non puoi passare di qua!");
             return false;
         }
@@ -104,17 +104,19 @@ public class Giocatore extends Personaggio implements Movimento {
         return attacco;
     }
 
-    public Oggetto apriChest(Chest cassa){
+    private Oggetto apriChest(Chest cassa){
         return cassa.getContenuto();
     }
 
-    public double beviPozione(Pozione pozione){
-        return 0.0;
+    public void apriInventario(){
+        for(int i = 0; i <inventario.size(); i++){
+            System.out.println( (i+1) + ". " + inventario.get(i).toString());
+        }
     }
 
-    public Oggetto selezionaOggetto(Oggetto oggetto){
 
-        return  oggetto;
+    public Oggetto selezionaOggetto(int i){
+        return inventario.get(i);
     }
 
     private  int impugnaArma(Arma arma){

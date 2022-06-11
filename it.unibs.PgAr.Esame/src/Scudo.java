@@ -6,4 +6,8 @@ public class Scudo extends Oggetto{
         super(nome, descrizione);
         this.protezione = protezione;
     }
+    public void proteggi(Giocatore giocatore){
+        double vita = giocatore.getVita();
+        giocatore.setVita(vita + protezione);
+    }
 }

@@ -46,6 +46,11 @@ public class GestisciMappa {
                         casella.setOccupabile(false);
                         caselle_non_occupabili.add(casella);
                         break;
+                    case 'K':
+                        //Principessa
+                        casella = new Casella(i ,j);
+                        break;
+
                 }
             }
         }

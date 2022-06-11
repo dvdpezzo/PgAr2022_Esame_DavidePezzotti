@@ -7,4 +7,9 @@ public class Arma extends Oggetto{
         super(nome, descrizione);
         this.potenza = NumeriCasuali.estraiIntero(35, 55);
     }
+    public void equipaggiaArma(Giocatore giocatore){
+        int potenza = giocatore.getPotenza_base();
+        potenza += this.potenza;
+        giocatore.setPotenza_base(potenza);
+    }
 }

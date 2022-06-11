@@ -1,6 +1,8 @@
 public class Pozione extends Oggetto{
-    public int ripristinaVita(){
-        return 0;
+    public double ripristinaVita(Giocatore giocatore){
+        double vita = giocatore.getVita();
+        vita += vita/2;
+        return vita;
     }
 
     public Pozione(String nome, String descrizione) {
