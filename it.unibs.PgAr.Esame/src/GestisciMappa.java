@@ -12,8 +12,9 @@ public class GestisciMappa {
     public void stampaMappa() {
         for (char[] chars : this.mappa) {
             for (char aChar : chars) {
-                System.out.println(aChar);
+                System.out.print(aChar);
             }
+            System.out.println("");
         }
     }
     private void setDimensioniMappa(int width, int height) {
@@ -91,7 +92,7 @@ public class GestisciMappa {
             //se l'evento che trova è uno start element...
             if(xmlr.getEventType() == XMLStreamConstants.START_ELEMENT){
                 String nomeTag = xmlr.getLocalName();
-                int i=0;
+                int i=-1;
                 int j=0;
                 //...ne controlla il nome e controlla a quale tag corrisponde:
                 switch (nomeTag){
@@ -105,22 +106,24 @@ public class GestisciMappa {
                         break;
                     // nel caso sia uguale a row...
                     case "row":
-                        //...passa al tag successivo (cell)...
-                        xmlr.next();
-                        do {
+                        i++;
+                        j=0;
+                        break;
+                    case "cell":
+                        while (xmlr.getEventType() != XMLStreamConstants.CHARACTERS){
+                            xmlr.next();
+                        }
+                        if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
                             //...e inizia a inserire i valori nella tabella alla prima riga…
                             this.mappa[i][j] = xmlr.getText().charAt(0);
                             //...aumenta la colonna...
                             j++;
-                            xmlr.next();
-                        }while(xmlr.getLocalName().equals("cell"));
-                        //...continua a farlo fino a quando il tag è uguale a cell...
-                        //...infine aumenta il valore della riga e riparte da capo
-                        i++;
+                        }
                         break;
 
                 }
             }
+            xmlr.next();
         }
 
 
