@@ -9,6 +9,14 @@ public class GestisciMappa {
 
     private char[][] mappa;
 
+    public char[][] getMappa() {
+        return mappa;
+    }
+
+    public void setMappa(char[][] mappa) {
+        this.mappa = mappa;
+    }
+
     public void stampaMappa() {
         for (char[] chars : this.mappa) {
             for (char aChar : chars) {
@@ -21,55 +29,27 @@ public class GestisciMappa {
         this.mappa = new char[width][height];
     }
 
-    public ArrayList<Casella> impostaCoordinate(){
+    public void setacciaPiano(){
         ArrayList<Casella> caselle_non_occupabili = new ArrayList<>();
         for (int i=0; i< this.mappa.length  ; i++){
             for(int j = 0; j<this.mappa[i].length; j++){
                 Casella casella;
                 switch (mappa[i][j]){
+                    case 'O':
+                        //giocatore
+                        Giocatore giocatore = new Giocatore();
+                        giocatore.setCoordinate(i , j);
+                        break;
                     case '#':
                         //Muro:
                         casella = new Casella(i, j);
                         casella.setOccupabile(false);
                         caselle_non_occupabili.add(casella);
                         break;
-                    case '.':
-                        //Casella libera
-                        break;
-                    case 'M':
-                        //Casella Mostro
-
-                        break;
-                    case 'C':
-                        //Casella Cesta:
-                        Casella posizioneChest = new Casella(i, j);
-                        Chest chest = new Chest(posizioneChest);
-                        break;
-                    case 'S':
-                        //Casella Negozio:
-                        break;
-                    case 'K':
-                        //Principessa Kibo:
-                        break;
-                    case 'D':
-                        //Casella Dijkstra:
-                        break;
-                    case 'T':
-                        //Casella scale salita:
-                        break;
-                    case 't':
-                        //Casella scale discesa:
-                        break;
-                    case 'B':
-                        //Casella nemico con chiave:
-                        break;
-                    case 'P':
-                        //Casella power up:
-                        break;
                 }
             }
         }
-        return caselle_non_occupabili;
+
     }
 
     public void creaMappa(String filename) throws XMLStreamException {
@@ -101,7 +81,7 @@ public class GestisciMappa {
                         if(xmlr.getAttributeCount() != 0){
                             width = Integer.parseInt(xmlr.getAttributeValue(0));
                             height = Integer.parseInt(xmlr.getAttributeValue(1));
-                            setDimensioniMappa(width, height);
+                            setDimensioniMappa(height, width);
                         }
                         break;
                     // nel caso sia uguale a row...

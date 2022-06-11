@@ -11,8 +11,8 @@ public abstract class Personaggio {
         return casella;
     }
 
-    public void setCoordinate(Casella casella) {
-        this.casella = casella;
+    public void setCoordinate(int x, int y) {
+        this.casella = new Casella(x, y);
     }
 
     public String getNome() {

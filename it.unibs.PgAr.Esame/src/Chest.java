@@ -1,7 +1,5 @@
 import it.unibs.fp.mylib.NumeriCasuali;
 
-import java.util.Random;
-
 public class Chest {
     private Oggetto contenuto;
 
@@ -21,8 +19,7 @@ public class Chest {
         int scelta = probabilità();
         switch (scelta) {
             case 1 -> {
-                int potenza = NumeriCasuali.estraiIntero(35, 55);
-                oggetto = new Arma("Spada", "Spada affilata!", potenza);
+                oggetto = new Arma("Spada", "Spada affilata!");
             }
             case 2 -> oggetto = new Pozione("Pozione curatrice", "Recupera il 50% della tua vita massima");
             case 3 -> oggetto = new Scudo("Scudo", "Ti protegge dagli attacchi dei nemici! (Max Protezione: 5)", 5);
